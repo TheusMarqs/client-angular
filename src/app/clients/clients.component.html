@@ -1,32 +1,36 @@
 <div class="row">
   <div class="col-8 m-auto">
-
     <form [formGroup]="formGroupClient">
-      <div class="mb-3">
-        <div class="display-6 text-center">
-          Cadastro de namoradas pro Matheus
-        </div>
-        <label for="name" class="form-label">Nome:</label>
-        <input type="text" formControlName="name" class="form-control" id="name" placeholder="Digite seu nome">
+    <div class="mb-3">
+      <div class="display-6 text-center">
+        Cadastro de Clientes
       </div>
-
-      <div class="mb-3">
-        <label for="email" class="form-label">Email:</label>
-        <input type="email" formControlName="email" class="form-control" id="email" placeholder="Digite seu email">
+      <label for="name" class="form-label">Nome:</label>
+      <input type="text" formControlName="name" class="form-control" id="name" placeholder="Nome">
+      <div *ngIf="submitted && name.invalid">
+        <small class="text-danger">Nome Invalido!</small>
       </div>
-
-      <div class="mb-3 d-flex justify-content-center">
-        <button class="btn btn-primary" (click)="save()">Salvar</button>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email:</label>
+      <input type="email" formControlName="email" class="form-control" id="email" placeholder="Email">
+      <div *ngIf="submitted && email.invalid">
+        <small class="text-danger">Email Invalido!</small>
       </div>
+    </div>
+    <div class="mb-3 d-flex justify-content-end">
+      <button class="btn btn-primary me-1" (click)="save()">Salvar</button>
+      <button class="btn btn-primary" (click)="clean()">Limpar</button>
+    </div>
     </form>
   </div>
 </div>
-
 <table class="table table-bordered border-dark">
-  <thead class="table-dark">
+  <thead class="table-dark ">
+    <tr class="table-active">
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Name</th>
+      <th scope="col">Nome</th>
       <th scope="col">Email</th>
       <th scope="col">Opções</th>
     </tr>
@@ -36,7 +40,7 @@
       <th scope="row">{{client.id}}</th>
       <td>{{client.name}}</td>
       <td>{{client.email}}</td>
-      <td >
+      <td>
         <button class="btn btn-primary me-1" (click)="edit(client)">Editar</button>
         <button class="btn btn-primary" (click)="delete(client)">Excluir</button>
       </td>
